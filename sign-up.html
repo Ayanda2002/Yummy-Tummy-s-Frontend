@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menu page for the resturant Yummy Tummy's">
+    <title>Sign Up</title>
+    <link rel="shortcut icon" href="images/ramen.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/sign-up.css">
+</head>
+<body>
+    <header>
+        <div class="main-bar">
+            <a href="index.html">
+                <div class="title">
+                    <img class="logo" src="images/ramen.png" alt="logo">
+                    <h1>
+                        Yummy <br> 
+                        Tummy's
+                    </h1>
+                </div>
+            </a>            
+            <div class="icons">
+                <a href="cart.html">
+                    <img class="cart" src="images/online-shopping.png" alt="cart">
+                </a>
+                <div class="user-menu">
+                    <img class="user" src="images/user.png" alt="user" onclick="toggleUserMenu()">
+                    <div class="dropdown" id="user-dropdown">
+                        <a href="sign-in.html">Sign In</a>
+                        <a href="sign-up.html">Sign Up</a>
+                    </div>
+                </div>
+            </div>      
+        </div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="menu.html" class="menu">Menu</a>
+                </li>
+                <li>
+                    <a href="partnerships.html" class="partnerships">Partnerships</a>
+                </li>
+                <li>
+                    <a href="about.html" class="about-us">About Us</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="contact-us">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="heading">
+            <h1>Sign Up</h1>
+        </div>
+        <fieldset>
+            <form id="sign-up-form" onsubmit="return validateSignUpForm(event)">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" placeholder="Enter your name" required>
+                
+                <label for="surname">Surname:</label>
+                <input type="text" name="surname" id="surname" placeholder="Enter your surname" required>
+    
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" minlength="6" required>
+                
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm your password" minlength="6" required>
+                
+                <div class="show-password">
+                    <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()">
+                    <label for="show-password">Show Password</label>
+                </div>
+                
+                <button type="submit" class="sign-up-button">Sign Up</button>
+            </form>
+        </fieldset>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="section">
+                <h2>Eat</h2>
+                <ul>
+                    <li>
+                        <a href="menu.html">Menu</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Explore</h2>
+                <ul>
+                    <li>
+                        <a href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <a href="values.html">Our Values</a>
+                    </li>
+                    <li>
+                        <a href="partnerships.html">Partnerships</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Help</h2>
+                <ul>
+                    <li>
+                        <a href="contact.html">Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="faq.html">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="links">
+            <div class="app-links">
+                <a href="https://apps.apple.com" target="_blank" class="app-store-link">
+                    <img src="images/apple.webp" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store" target="_blank" class="google-play-link">
+                    <img class="google" src="images/google.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com" target="_blank" class="social-icon">
+                    <img src="images/instragram.jpg" alt="Instagram" />
+                </a>
+                <a href="https://www.facebook.com" target="_blank" class="social-icon">
+                    <img src="images/facebook.jpg" alt="Facebook" />
+                </a>
+                <a href="https://www.twitter.com" target="_blank" class="social-icon">
+                    <img src="images/x.png" alt="X (formerly Twitter)" />
+                </a>
+                <a href="https://www.youtube.com" target="_blank" class="social-icon">
+                    <img src="images/youtube.png" alt="YouTube" />
+                </a>
+            </div>
+        </div>
+        <div class="copyrights">
+            <p>Copyright &copy; Tummy Yummy's South Africa. 2025 All Rights Reserved. build pwa-45-12-18_9f34a1c2</p>
+        </div>
+    </footer>
+    <script>
+        function validateSignUpForm(event) {
+            const name = document.getElementById('name').value.trim();
+            const surname = document.getElementById('surname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirm-password').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+            if (!name) {
+                alert('Please enter your name.');
+                return false;
+            }
+    
+            if (!surname) {
+                alert('Please enter your surname.');
+                return false;
+            }
+    
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+    
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return false;
+            }
+    
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return false;
+            }
+    
+            // Form is valid
+            return true;
+        }
+    
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            confirmPasswordInput.type = type;
+        }
+
+        // Toggles the visibility of the user dropdown menu
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('user-dropdown');
+            dropdown.classList.toggle('show');
+        }
+    
+        // Closes the dropdown if clicking outside of it
+        window.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('user-dropdown');
+            const userIcon = document.querySelector('.user');
+            if (!dropdown.contains(event.target) && event.target !== userIcon) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>    
+</body>
+</html>

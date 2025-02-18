@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Us page for the resturant Yummy Tummy's">
+    <title>Contact Us</title>
+    <link rel="shortcut icon" href="images/ramen.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/contact.css">
+</head>
+<body>
+    <header>
+        <div class="main-bar">
+            <a href="index.html">
+                <div class="title">
+                    <img class="logo" src="images/ramen.png" alt="logo">
+                    <h1>
+                        Yummy <br> 
+                        Tummy's
+                    </h1>
+                </div>
+            </a>  
+            <div class="icons">
+                <a href="cart.html">
+                    <img class="cart" src="images/online-shopping.png" alt="cart">
+                </a>
+                <div class="user-menu">
+                    <img class="user" src="images/user.png" alt="user" onclick="toggleUserMenu()">
+                    <div class="dropdown" id="user-dropdown">
+                        <a href="sign-in.html">Sign In</a>
+                        <a href="sign-up.html">Sign Up</a>
+                    </div>
+                </div>
+            </div>      
+        </div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="menu.html" class="menu">Menu</a>
+                </li>
+                <li>
+                    <a href="partnerships.html" class="partnerships">Partnerships</a>
+                </li>
+                <li>
+                    <a href="about.html" class="about-us">About Us</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="contact-us">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="hello">
+            <img src="images/hello.jpg" alt="Hello bord-sign">
+        </div>
+        <div class="info">
+            <div class="line">
+                <span>Get in </span>
+                <br>
+                <span class="highlight">Touch</span>
+            </div>
+            <p>
+                At Yummy Tummy's, your feedback matters. We welcome your thoughts, suggestions, compliments, and concerns because they inspire us to serve you better every day. Whether you have a unique idea, a kind note, or an issue you'd like to share, we're here to listen and grow. Your input drives our commitment to innovation, ensuring we deliver an unforgettable dining experience every time you visit.
+                <br><br>
+                We value every compliment—it fuels our passion to keep delighting our guests. Likewise, complaints are an opportunity for us to learn, improve, and make sure your next visit is even better. Don't hesitate to reach out—your voice helps shape the Yummy Tummy's experience.
+                <br><br>
+                Thank you for being part of our journey to create a place where good food and great memories come together. Together, let's make Yummy Tummy's the ultimate destination for deliciousness and happiness!
+            </p>
+        </div>
+        <div class="user-input">
+            <div class="left">
+                <input type="text" name="First name" id="fname" placeholder="First name">
+                <input type="text" name="Last name" id="lname" placeholder="Last name">
+                <input type="email" name="email" id="email" placeholder="Email">
+                <label for="subject" style="color: black;">Please choose a subject:</label>
+                <select id="subject" name="subject" placeholder="abc">
+                    <option value="" disabled selected>Please choose a subject</option>
+                    <option value="complain">Complain</option>
+                    <option value="compliment">Compliment</option>
+                    <option value="suggestion">Suggestion</option>
+                </select>
+            </div>
+            <div class="right">
+                <textarea id="message" name="message" placeholder="Write your message here..."></textarea>
+                <button>Send</button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="section">
+                <h2>Eat</h2>
+                <ul>
+                    <li>
+                        <a href="menu.html">Menu</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Explore</h2>
+                <ul>
+                    <li>
+                        <a href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <a href="values.html">Our Values</a>
+                    </li>
+                    <li>
+                        <a href="partnerships.html">Partnerships</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Help</h2>
+                <ul>
+                    <li>
+                        <a href="contact.html">Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="faq.html">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="links">
+            <div class="app-links">
+                <a href="https://apps.apple.com" target="_blank" class="app-store-link">
+                    <img src="images/apple.webp" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store" target="_blank" class="google-play-link">
+                    <img class="google" src="images/google.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com" target="_blank" class="social-icon">
+                    <img src="images/instragram.jpg" alt="Instagram" />
+                </a>
+                <a href="https://www.facebook.com" target="_blank" class="social-icon">
+                    <img src="images/facebook.jpg" alt="Facebook" />
+                </a>
+                <a href="https://www.twitter.com" target="_blank" class="social-icon">
+                    <img src="images/x.png" alt="X (formerly Twitter)" />
+                </a>
+                <a href="https://www.youtube.com" target="_blank" class="social-icon">
+                    <img src="images/youtube.png" alt="YouTube" />
+                </a>
+            </div>
+        </div>
+        <div class="copyrights">
+            <p>Copyright &copy; Tummy Yummy's South Africa. 2025 All Rights Reserved. build pwa-45-12-18_9f34a1c2</p>
+        </div>
+    </footer>
+    <script>
+        // Toggles the visibility of the user dropdown menu
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('user-dropdown');
+            dropdown.classList.toggle('show');
+        }
+    
+        // Closes the dropdown if clicking outside of it
+        window.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('user-dropdown');
+            const userIcon = document.querySelector('.user');
+            if (!dropdown.contains(event.target) && event.target !== userIcon) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

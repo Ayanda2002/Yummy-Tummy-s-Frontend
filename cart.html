@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menu page for the resturant Yummy Tummy's">
+    <title>Cart</title>
+    <link rel="shortcut icon" href="images/ramen.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/cart.css">
+</head>
+<body>
+    <header>
+        <div class="main-bar">
+            <a href="index.html">
+                <div class="title">
+                    <img class="logo" src="images/ramen.png" alt="logo">
+                    <h1>
+                        Yummy <br> 
+                        Tummy's
+                    </h1>
+                </div>
+            </a>            
+            <div class="icons">
+                <a href="cart.html">
+                    <img class="cart" src="images/online-shopping.png" alt="cart">
+                </a>
+                <div class="user-menu">
+                    <img class="user" src="images/user.png" alt="user" onclick="toggleUserMenu()">
+                    <div class="dropdown" id="user-dropdown">
+                        <a href="sign-in.html">Sign In</a>
+                        <a href="sign-up.html">Sign Up</a>
+                    </div>
+                </div>
+            </div>      
+        </div>
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="menu.html" class="menu">Menu</a>
+                </li>
+                <li>
+                    <a href="partnerships.html" class="partnerships">Partnerships</a>
+                </li>
+                <li>
+                    <a href="about.html" class="about-us">About Us</a>
+                </li>
+                <li>
+                    <a href="contact.html" class="contact-us">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <section class="cart-container">
+            <h2>Your Cart</h2>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </tbody>
+            </table>
+            <div class="cart-summary">
+                <p><strong>Subtotal:</strong> <span id="cart-subtotal">R 0.00</span></p>
+                <button class="checkout-btn" onclick="checkout()">Checkout</button>
+            </div>
+        </section>
+    </main>    
+    <footer class="footer">
+        <div class="container">
+            <div class="section">
+                <h2>Eat</h2>
+                <ul>
+                    <li>
+                        <a href="menu.html">Menu</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Explore</h2>
+                <ul>
+                    <li>
+                        <a href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <a href="values.html">Our Values</a>
+                    </li>
+                    <li>
+                        <a href="partnerships.html">Partnerships</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Help</h2>
+                <ul>
+                    <li>
+                        <a href="contact.html">Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="faq.html">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="links">
+            <div class="app-links">
+                <a href="https://apps.apple.com" target="_blank" class="app-store-link">
+                    <img src="images/apple.webp" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store" target="_blank" class="google-play-link">
+                    <img class="google" src="images/google.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com" target="_blank" class="social-icon">
+                    <img src="images/instragram.jpg" alt="Instagram" />
+                </a>
+                <a href="https://www.facebook.com" target="_blank" class="social-icon">
+                    <img src="images/facebook.jpg" alt="Facebook" />
+                </a>
+                <a href="https://www.twitter.com" target="_blank" class="social-icon">
+                    <img src="images/x.png" alt="X (formerly Twitter)" />
+                </a>
+                <a href="https://www.youtube.com" target="_blank" class="social-icon">
+                    <img src="images/youtube.png" alt="YouTube" />
+                </a>
+            </div>
+        </div>
+        <div class="copyrights">
+            <p>Copyright &copy; Tummy Yummy's South Africa. 2025 All Rights Reserved. build pwa-45-12-18_9f34a1c2</p>
+        </div>
+    </footer>
+    <script>
+        // Toggles the visibility of the user dropdown menu
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('user-dropdown');
+            dropdown.classList.toggle('show');
+        }
+    
+        // Closes the dropdown if clicking outside of it
+        window.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('user-dropdown');
+            const userIcon = document.querySelector('.user');
+            if (!dropdown.contains(event.target) && event.target !== userIcon) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // Sample cart items (can be fetched from a backend)
+        const cart = [
+            { id: 1, name: "Chicken Ramen", price: 80, quantity: 1 },
+            { id: 2, name: "Vegetarian Sushi", price: 60, quantity: 2 },
+        ];
+
+        // Function to render cart items
+        function renderCart() {
+            const cartItems = document.getElementById("cart-items");
+            const cartSubtotal = document.getElementById("cart-subtotal");
+            cartItems.innerHTML = "";
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const total = item.price * item.quantity;
+                subtotal += total;
+                cartItems.innerHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>
+                            <input type="number" value="${item.quantity}" min="1" 
+                                onchange="updateQuantity(${item.id}, this.value)">
+                        </td>
+                        <td>R ${item.price.toFixed(2)}</td>
+                        <td>R ${total.toFixed(2)}</td>
+                        <td>
+                            <button onclick="removeItem(${item.id})">Remove</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            cartSubtotal.textContent = `R ${subtotal.toFixed(2)}`;
+        }
+
+        // Function to update item quantity
+        function updateQuantity(id, quantity) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity = parseInt(quantity);
+                renderCart();
+            }
+        }
+
+        // Function to remove an item
+        function removeItem(id) {
+            const index = cart.findIndex(item => item.id === id);
+            if (index !== -1) {
+                cart.splice(index, 1);
+                renderCart();
+            }
+        }
+
+        // Function to simulate checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+            } else {
+                window.location.href = "checkout.html";
+            }
+        }
+
+        // Render cart on page load
+        renderCart();
+    </script>
+</body>
+</html>
